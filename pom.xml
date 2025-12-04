@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>se.vidstige</groupId>
+    <groupId>app.morphe</groupId>
     <artifactId>jadb</artifactId>
-    <version>1.2.1-SNAPSHOT</version>
+    <version>1.2.1</version>
     <url>https://github.com/vidstige/jadb</url>
 
     <licenses>
@@ -48,6 +48,14 @@
             <version>${mockito-core.version}</version>
         </dependency>
     </dependencies>
+
+	<distributionManagement>
+       <repository>
+         <id>github</id>
+         <name>jadb</name>
+         <url>https://maven.pkg.github.com/MorpheApp/jadb</url>
+       </repository>
+    </distributionManagement>
 
     <build>
         <sourceDirectory>src</sourceDirectory>
