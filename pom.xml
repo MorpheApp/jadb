@@ -6,7 +6,7 @@
 
     <groupId>app.morphe</groupId>
     <artifactId>jadb</artifactId>
-    <version>1.2.1-SNAPSHOT</version>
+    <version>1.2.2-SNAPSHOT</version>
     <url>https://github.com/MorpheApp/jadb</url>
 
     <licenses>
@@ -111,7 +111,8 @@
                     <useReleaseProfile>false</useReleaseProfile>
                     <releaseProfiles>release</releaseProfiles>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <scmCommentPrefix>[ci skip]</scmCommentPrefix>
+                    <scmCommentPrefix>[skip ci] </scmCommentPrefix>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
                     <goals>deploy</goals>
 
                 </configuration>
@@ -163,45 +164,9 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.12.0</version>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
     <scm>
-        <connection>scm:git:${project.scm.url}</connection>
-        <developerConnection>scm:git:${project.scm.url}</developerConnection>
-        <url>git@github.com:MorpheApp/jadb.git</url>
-        <tag>HEAD</tag>
+        <connection>scm:git:https://github.com/MorpheApp/jadb.git</connection>
+        <developerConnection>scm:git:https://github.com/MorpheApp/jadb.git</developerConnection>
     </scm>
 
 </project>
