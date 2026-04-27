@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.Assert.*;
 
-public class RealDeviceTestCases {
+public class RealDeviceIT {
 
     @Rule
     public TemporaryFolder temporaryFolder = new TemporaryFolder(); //Must be public
