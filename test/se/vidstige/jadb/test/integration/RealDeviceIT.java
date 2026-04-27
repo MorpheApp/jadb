@@ -169,7 +169,7 @@ public class RealDeviceIT {
         JadbDevice any = jadb.getAnyDevice();
         try (FileOutputStream outputStream = new FileOutputStream(temporaryFolder.newFile("screenshot.png"))) {
             InputStream stdout = any.executeShell("screencap", "-p");
-            Stream.copy(stdout, outputStream);
+            StreamHelper.copy(stdout, outputStream);
         }
     }
 

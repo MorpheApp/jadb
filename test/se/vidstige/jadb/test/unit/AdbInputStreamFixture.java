@@ -3,7 +3,7 @@ package se.vidstige.jadb.test.unit;
 import org.junit.Assert;
 import org.junit.Test;
 import se.vidstige.jadb.AdbFilterInputStream;
-import se.vidstige.jadb.Stream;
+import se.vidstige.jadb.StreamHelper;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -16,7 +16,7 @@ public class AdbInputStreamFixture {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(input);
         InputStream sut = new AdbFilterInputStream(inputStream);
         ByteArrayOutputStream output = new ByteArrayOutputStream();
-        Stream.copy(sut, output);
+        StreamHelper.copy(sut, output);
         return output.toByteArray();
     }
 

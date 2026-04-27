@@ -29,7 +29,7 @@ class Transport implements Closeable {
     }
 
     public void readResponseTo(OutputStream output) throws IOException {
-        Stream.copy(inputStream, output);
+        StreamHelper.copy(inputStream, output);
     }
 
     public InputStream getInputStream() {
