@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.*;
 
 /**
@@ -59,7 +60,7 @@ public class PackageManager {
     }
 
     private void install(File apkFile, List<String> extraArguments) throws IOException, JadbException {
-        RemoteFile remote = new RemoteFile("/data/local/tmp/" + apkFile.getName());
+        RemoteFile remote = new RemoteFile(getTempDir() + apkFile.getName());
         device.push(apkFile, remote);
 
         try {
@@ -78,8 +79,9 @@ public class PackageManager {
         List<RemoteFile> remotes = new ArrayList<>(apkFiles.size());
 
         // push all apk files to device
+        String dir = getTempDir();
         for (File apk : apkFiles) {
-            RemoteFile remote = new RemoteFile("/data/local/tmp/" + apk.getName());
+            RemoteFile remote = new RemoteFile(dir + apk.getName());
             remotes.add(remote);
             device.push(apk, remote);
         }
@@ -155,6 +157,10 @@ public class PackageManager {
     public void launch(Package pkg) throws IOException, JadbException {
         InputStream s = device.executeShell("monkey", "-p", pkg.toString(), "-c", "android.intent.category.LAUNCHER", "1");
         s.close();
+    }
+
+    private static String getTempDir() {
+        return "/data/local/tmp/" + UUID.randomUUID() + "/";
     }
 
     //<editor-fold desc="InstallOption">
