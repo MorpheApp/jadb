@@ -46,17 +46,19 @@ public class PackageManager {
     }
 
     private void remove(RemoteFile file) throws IOException, JadbException {
-        InputStream s = device.executeShell("rm", "-f", file.getPath());
-        StreamHelper.readAll(s, StandardCharsets.UTF_8);
+        try (InputStream s = device.executeShell("rm", "-f", file.getPath())) {
+            StreamHelper.readAll(s, StandardCharsets.UTF_8);
+        }
     }
 
     private String runPmAndVerify(String operation, List<String> arguments) throws IOException, JadbException {
         String[] args = Stream.concat(Stream.of(operation), arguments.stream()).toArray(String[]::new);
-        InputStream s = device.executeShell("pm", args);
 
-        String result = StreamHelper.readAll(s, StandardCharsets.UTF_8);
-        verifyOperation(operation, result);
-        return result;
+        try (InputStream s = device.executeShell("pm", args)) {
+            String result = StreamHelper.readAll(s, StandardCharsets.UTF_8);
+            verifyOperation(operation, result);
+            return result;
+        }
     }
 
     private void install(File apkFile, List<String> extraArguments) throws IOException, JadbException {
