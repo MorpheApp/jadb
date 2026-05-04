@@ -5,10 +5,14 @@ package se.vidstige.jadb;
  */
 public class RemoteFile {
     private final String path;
+    private final String name;
 
-    public RemoteFile(String path) { this.path = path; }
+    public RemoteFile(String path) {
+        this.path = path;
+        this.name = path.substring(path.lastIndexOf("/") + 1);
+    }
 
-    public String getName() { throw new UnsupportedOperationException(); }
+    public String getName() { return name; }
     public int getSize() { throw new UnsupportedOperationException(); }
     public int getLastModified() { throw new UnsupportedOperationException(); }
     public boolean isDirectory() { throw new UnsupportedOperationException(); }

@@ -6,8 +6,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 
-public class Stream {
-    private Stream() {
+public class StreamHelper {
+    private StreamHelper() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -21,7 +21,7 @@ public class Stream {
 
     public static String readAll(InputStream input, Charset charset) throws IOException {
         ByteArrayOutputStream tmp = new ByteArrayOutputStream();
-        Stream.copy(input, tmp);
+        StreamHelper.copy(input, tmp);
         return new String(tmp.toByteArray(), charset);
     }
 }

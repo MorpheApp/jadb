@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import se.vidstige.jadb.JadbConnection;
 import se.vidstige.jadb.JadbDevice;
-import se.vidstige.jadb.Stream;
+import se.vidstige.jadb.StreamHelper;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -56,6 +56,6 @@ public class ExecuteCmdIT {
     @Test
     public void testExecuteWithSpecialChars() throws Exception {
         InputStream response = jadbDevice.execute("echo", input);
-        Assert.assertEquals(input, Stream.readAll(response, StandardCharsets.UTF_8).replaceAll("\n$", ""));
+        Assert.assertEquals(input, StreamHelper.readAll(response, StandardCharsets.UTF_8).replaceAll("\n$", ""));
     }
 }
